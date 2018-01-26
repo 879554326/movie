@@ -4,6 +4,6 @@ __date__ = '2018/1/23 22:02'
 
 from flask import Blueprint
 
-admin = Blueprint("amdin", __name__)
+admin = Blueprint("admin", __name__)
 
 import app.admin.views
