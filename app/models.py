@@ -8,11 +8,11 @@ from app import db
 """
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-import pymysql
+# import pymysql
 import os
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@127.0.0.1:3306/movie"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqldb://root:password@127.0.0.1:3306/movie?charset=utf8"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 db = SQLAlchemy(app)
 """
@@ -166,7 +166,9 @@ class Admin(db.Model):
     def __repr__(self):
         return "<Admin %r>" % self.name
 
+    # 验证哈希的加密密码
     def check_pwd(self, pwd):
+        # 导入哈希验证模块
         from werkzeug.security import check_password_hash
         return check_password_hash(self.pwd, pwd)
 
